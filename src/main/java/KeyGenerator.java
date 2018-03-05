@@ -4,11 +4,11 @@ import java.util.List;
 
 public class KeyGenerator {
 
-    public static KeyPair generateKeys() {
-        BigInteger prime1 = getRandomPrimeNumber();
+    public static KeyPair generateKeys(int maxPrime) {
+        BigInteger prime1 = getRandomPrimeNumber(maxPrime);
         System.out.println("p" + prime1);
 
-        BigInteger prime2 = getRandomPrimeNumber();
+        BigInteger prime2 = getRandomPrimeNumber(maxPrime);
         System.out.println("q" + prime2);
 
         BigInteger modulus = prime1.multiply(prime2);
@@ -27,8 +27,8 @@ public class KeyGenerator {
         return new KeyPair(publicKey, privateKey);
     }
 
-    private static BigInteger getRandomPrimeNumber() {
-        BigInteger result = BigInteger.valueOf((int) (Math.random() * 40960)+1).abs();
+    private static BigInteger getRandomPrimeNumber(int maxPrime) {
+        BigInteger result = BigInteger.valueOf((int) (Math.random() * maxPrime)+1).abs();
         return result.nextProbablePrime();
     }
 

@@ -38,7 +38,7 @@ public class Encryption {
     }
 
     public static void main (String[] args) {
-        KeyPair keys = KeyGenerator.generateKeys();
+        KeyPair keys = KeyGenerator.generateKeys(2048);
 
         System.out.println("public key "+keys.publicKey);
         System.out.println("private key "+keys.privateKey);
