@@ -6,22 +6,15 @@ public class KeyGenerator {
 
     public static KeyPair generateKeys(int maxPrime) {
         BigInteger prime1 = getRandomPrimeNumber(maxPrime);
-        System.out.println("p" + prime1);
-
         BigInteger prime2 = getRandomPrimeNumber(maxPrime);
-        System.out.println("q" + prime2);
 
         BigInteger modulus = prime1.multiply(prime2);
         BigInteger secret = (prime1.subtract(BigInteger.ONE)).multiply((prime2.subtract(BigInteger.ONE)));
-        System.out.println("s"+secret);
 
         BigInteger relativePrime = getRelativePrime(secret);
-        System.out.println("r"+relativePrime);
-
-        Key publicKey = new Key(relativePrime, modulus);
-
         BigInteger privExp = relativePrime.modInverse(secret);
 
+        Key publicKey = new Key(relativePrime, modulus);
         Key privateKey = new Key(privExp, modulus);
 
         return new KeyPair(publicKey, privateKey);
